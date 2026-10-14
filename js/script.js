@@ -27,9 +27,9 @@ const db = getFirestore(app);
 
 // NAZIVI I REDOSLIJED RAZREDA
 const classNames = {
-    "1sa": "1.sa",
-    "1sb": "1.sb",
-    "1k": "1.k"
+    "1.sa": "1.sa",
+    "1.sb": "1.sb",
+    "1.k": "1.k"
 };
 
 const classOrder = ["1sa", "1sb", "1k"];
