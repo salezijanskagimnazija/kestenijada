@@ -1,3 +1,101 @@
-<h1>Pozz</h1>
-<h2>Test 2</h2>
-<h2>Evo opet...</h2>
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kestenijada – bodovanje</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/script.js"></script>
+</head>
+<body>
+
+    <main class="container">
+
+        <header class="page-header">
+            <p class="eyebrow">ŠKOLSKA KESTENIJADA</p>
+            <h1 id="pageTitle">Bodovanje razreda</h1>
+            <p id="pageSubtitle">
+                Odaberi razred i dodaj bod.
+            </p>
+        </header>
+
+        <!-- PRIJAVA -->
+        <section id="loginSection" class="panel login-panel">
+            <h2>Prijava animatora</h2>
+
+            <form id="loginForm">
+                <label for="username">Korisničko ime</label>
+                <input
+                    type="text"
+                    id="username"
+                    autocomplete="username"
+                    required
+                >
+
+                <label for="password">Lozinka</label>
+                <input
+                    type="password"
+                    id="password"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button type="submit" class="primary-button">
+                    Prijavi se
+                </button>
+
+                <p id="loginError" class="message error" aria-live="polite"></p>
+            </form>
+        </section>
+
+        <!-- UNOS BODOVA -->
+        <section id="animatorSection" class="panel" hidden>
+            <h2>Dodavanje bodova</h2>
+
+            <label for="classSelect">Odaberi razred</label>
+
+            <select id="classSelect">
+                <option value="">Učitavanje razreda...</option>
+            </select>
+
+            <button
+                id="addPointButton"
+                class="primary-button add-button"
+                disabled
+            >
+                + DODAJ BOD
+            </button>
+
+            <p id="statusMessage" class="message" aria-live="polite">
+                Odaberi razred za početak.
+            </p>
+
+            <a
+                href="?rezultati=1"
+                target="_blank"
+                rel="noopener"
+                class="text-link"
+            >
+                Otvori prikaz za TV / projektor ↗
+            </a>
+        </section>
+
+        <!-- REZULTATI -->
+        <section id="leaderboardSection" class="panel" hidden>
+            <div class="leaderboard-header">
+                <h2>Trenutačni poredak</h2>
+                <span id="connectionStatus" class="connection-status">
+                    Spajanje...
+                </span>
+            </div>
+
+            <ol id="leaderboardList" class="leaderboard-list"></ol>
+        </section>
+
+    </main>
+
+</body>
+</html>
