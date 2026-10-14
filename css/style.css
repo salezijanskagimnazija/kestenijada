@@ -198,6 +198,8 @@ select:focus {
     white-space: nowrap;
 }
 
+/* PRIKAZ ZA TV ILI PROJEKTOR */
+
 .display-mode .container {
     width: min(900px, calc(100% - 32px));
     padding-top: 5vh;
