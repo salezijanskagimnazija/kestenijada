@@ -192,7 +192,7 @@ function renderLeaderboard() {
 
 // PRAĆENJE FIRESTORE BAZE UŽIVO
 onSnapshot(
-    collection(db, "classes"),
+    collection(db, "razredi"),
 
     (snapshot) => {
         allClasses = snapshot.docs.map((document) => ({
@@ -255,7 +255,7 @@ addPointButton.addEventListener("click", async () => {
     }
 
     try {
-        const classRef = doc(db, "classes", classId);
+        const classRef = doc(db, "razredi", classId);
 
         // POVEĆAJ POLJE "bodovi" ZA JEDAN
         await updateDoc(classRef, {
