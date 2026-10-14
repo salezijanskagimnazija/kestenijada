@@ -25,14 +25,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// NAZIVI I REDOSLIJED RAZREDA
+// NAZIVI RAZREDA
+// Lijevo je ID dokumenta u Firestoreu.
+// Desno je naziv koji će se prikazivati na stranici.
 const classNames = {
-    "1.sa": "1.sa",
-    "1.sb": "1.sb",
-    "1.k": "1.k"
+    "1.sa": "1.SA",
+    "1.sb": "1.SB",
+    "1.k": "1.K"
 };
 
-const classOrder = ["1sa", "1sb", "1k"];
+const classOrder = ["1.sa", "1.sb", "1.k"];
+
+// NAZIV KOLEKCIJE U FIRESTOREU
+const collectionName = "razredi";
 
 // HTML ELEMENTI
 const loginSection = document.getElementById("loginSection");
@@ -60,7 +65,7 @@ let allClasses = [];
 let isSaving = false;
 let saveCooldownTimer = null;
 
-// PRIPREMA PRIKAZA ZA TV
+// PRIKAZ ZA TV / PROJEKTOR
 if (isDisplayMode) {
     document.body.classList.add("display-mode");
 
@@ -91,12 +96,12 @@ loginForm.addEventListener("submit", (event) => {
     }
 });
 
-// POMOĆNA FUNKCIJA ZA NAZIV RAZREDA
+// NAZIV RAZREDA ZA PRIKAZ
 function getClassName(classId) {
     return classNames[classId] || classId;
 }
 
-// ISPRAVNO ISPISIVANJE: 1 BOD, 2 BODA, 5 BODOVA
+// JEDNINA I MNOŽINA
 function getPointsLabel(points) {
     const lastTwo = points % 100;
     const lastOne = points % 10;
@@ -116,7 +121,7 @@ function getPointsLabel(points) {
     return "bodova";
 }
 
-// PUNJENJE PADAJUĆE LISTE
+// POPUNJAVANJE PADAJUĆE LISTE
 function renderClassOptions() {
     const selectedClass = classSelect.value;
 
@@ -137,7 +142,7 @@ function renderClassOptions() {
         classSelect.add(option);
     });
 
-    // ZADRŽI ODABRANI RAZRED KOD AŽURIRANJA
+    // ZADRŽI PRETHODNO ODABRANI RAZRED
     if (allClasses.some((item) => item.id === selectedClass)) {
         classSelect.value = selectedClass;
     }
@@ -148,7 +153,7 @@ function renderClassOptions() {
         !classSelect.value || isSaving || allClasses.length === 0;
 }
 
-// PRIKAZ PORETKA
+// PRIKAZ PORETKA RAZREDA
 function renderLeaderboard() {
     leaderboardList.replaceChildren();
 
@@ -156,11 +161,11 @@ function renderLeaderboard() {
         const item = document.createElement("li");
         item.className = "leaderboard-item";
         item.textContent = "Nema razreda u bazi.";
-
         leaderboardList.append(item);
         return;
     }
 
+    // SORTIRANJE PREMA BROJU BODOVA
     const sortedClasses = [...allClasses].sort((a, b) => {
         return (Number(b.bodovi) || 0) - (Number(a.bodovi) || 0);
     });
@@ -190,9 +195,9 @@ function renderLeaderboard() {
     });
 }
 
-// PRAĆENJE FIRESTORE BAZE UŽIVO
+// PRAĆENJE PODATAKA U FIRESTOREU UŽIVO
 onSnapshot(
-    collection(db, "razredi"),
+    collection(db, collectionName),
 
     (snapshot) => {
         allClasses = snapshot.docs.map((document) => ({
@@ -219,7 +224,7 @@ onSnapshot(
     }
 );
 
-// REAKCIJA NA ODABIR RAZREDA
+// PROMJENA ODABRANOG RAZREDA
 classSelect.addEventListener("change", () => {
     addPointButton.disabled =
         !classSelect.value || isSaving || allClasses.length === 0;
@@ -248,14 +253,14 @@ addPointButton.addEventListener("click", async () => {
     addPointButton.textContent = "SPREMANJE...";
     statusMessage.textContent = "Spremam bod...";
 
-    // Osiguraj da prethodno čekanje ne ostane aktivno.
     if (saveCooldownTimer !== null) {
         clearTimeout(saveCooldownTimer);
         saveCooldownTimer = null;
     }
 
     try {
-        const classRef = doc(db, "razredi", classId);
+        // PRISTUP DOKUMENTU U KOLEKCIJI "razredi"
+        const classRef = doc(db, collectionName, classId);
 
         // POVEĆAJ POLJE "bodovi" ZA JEDAN
         await updateDoc(classRef, {
@@ -263,6 +268,7 @@ addPointButton.addEventListener("click", async () => {
         });
 
         addPointButton.textContent = "✓ BOD DODAN";
+
         statusMessage.textContent =
             `Bod je uspješno dodan razredu ${getClassName(classId)}.`;
 
@@ -270,11 +276,12 @@ addPointButton.addEventListener("click", async () => {
         console.error("Greška pri dodavanju boda:", error);
 
         addPointButton.textContent = "GREŠKA";
+
         statusMessage.textContent =
             "Bod nije spremljen. Provjeri vezu i pokušaj ponovno.";
 
     } finally {
-        // KRATKO ZAKLJUČAVANJE NAKON ZAHTJEVA
+        // KRATKA PAUZA PRIJE SLJEDEĆEG KLIKA
         saveCooldownTimer = window.setTimeout(() => {
             isSaving = false;
             saveCooldownTimer = null;
@@ -282,6 +289,7 @@ addPointButton.addEventListener("click", async () => {
             classSelect.disabled = allClasses.length === 0;
 
             addPointButton.textContent = "+ DODAJ BOD";
+
             addPointButton.disabled =
                 !classSelect.value || allClasses.length === 0;
 
