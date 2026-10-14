@@ -17,12 +17,10 @@
         <header class="page-header">
             <p class="eyebrow">ŠKOLSKA KESTENIJADA</p>
             <h1 id="pageTitle">Bodovanje razreda</h1>
-            <p id="pageSubtitle">
-                Odaberi razred i dodaj bod.
-            </p>
+            <p id="pageSubtitle">Odaberi razred i dodaj bod.</p>
         </header>
 
-        <!-- PRIJAVA -->
+        <!-- PRIJAVA ANIMATORA -->
         <section id="loginSection" class="panel login-panel">
             <h2>Prijava animatora</h2>
 
@@ -47,17 +45,21 @@
                     Prijavi se
                 </button>
 
-                <p id="loginError" class="message error" aria-live="polite"></p>
+                <p
+                    id="loginError"
+                    class="message error"
+                    aria-live="polite"
+                ></p>
             </form>
         </section>
 
-        <!-- UNOS BODOVA -->
+        <!-- BODOVANJE -->
         <section id="animatorSection" class="panel" hidden>
             <h2>Dodavanje bodova</h2>
 
             <label for="classSelect">Odaberi razred</label>
 
-            <select id="classSelect">
+            <select id="classSelect" disabled>
                 <option value="">Učitavanje razreda...</option>
             </select>
 
@@ -69,7 +71,11 @@
                 + DODAJ BOD
             </button>
 
-            <p id="statusMessage" class="message" aria-live="polite">
+            <p
+                id="statusMessage"
+                class="message"
+                aria-live="polite"
+            >
                 Odaberi razred za početak.
             </p>
 
@@ -83,11 +89,15 @@
             </a>
         </section>
 
-        <!-- REZULTATI -->
+        <!-- POREDAK RAZREDA -->
         <section id="leaderboardSection" class="panel" hidden>
             <div class="leaderboard-header">
                 <h2>Trenutačni poredak</h2>
-                <span id="connectionStatus" class="connection-status">
+
+                <span
+                    id="connectionStatus"
+                    class="connection-status"
+                >
                     Spajanje...
                 </span>
             </div>
