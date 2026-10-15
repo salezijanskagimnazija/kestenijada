@@ -1,1 +1,133 @@
 
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#20180f">
+    <title>Kestenijada – Bodovanje</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/script.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="brand">
+            <span class="brand-icon">🌰</span>
+            <div>
+                <h1>Kestenijada</h1>
+                <p>Sustav bodovanja</p>
+            </div>
+        </div>
+        <div id="connection-status" class="status">
+            Povezivanje...
+        </div>
+    </header>
+
+    <main>
+        <!-- PRIKAZ ZA ANIMATORE -->
+        <section id="admin-view" class="panel hidden">
+            <div class="section-heading">
+                <p class="eyebrow">ANIMATORSKI PANEL</p>
+                <h2>Dodjela bodova</h2>
+                <p>Odaberi razred i dodijeli jedan bod.</p>
+            </div>
+
+            <label for="game-select">Igra</label>
+            <select id="game-select">
+                <option value="Igra 1">Igra 1</option>
+                <option value="Igra 2">Igra 2</option>
+                <option value="Igra 3">Igra 3</option>
+                <option value="Igra 4">Igra 4</option>
+                <option value="Igra 5">Igra 5</option>
+                <option value="Igra 6">Igra 6</option>
+                <option value="Igra 7">Igra 7</option>
+                <option value="Igra 8">Igra 8</option>
+                <option value="Igra 9">Igra 9</option>
+                <option value="Igra 10">Igra 10</option>
+                <option value="Igra 11">Igra 11</option>
+                <option value="Igra 12">Igra 12</option>
+            </select>
+
+            <div class="selected-game">
+                Trenutačna igra:
+                <strong id="current-game">Igra 1</strong>
+            </div>
+
+            <label class="class-label">Odaberi razred</label>
+            <div id="class-buttons" class="class-grid">
+                <!-- Gumbi se generiraju u JavaScriptu -->
+            </div>
+
+            <div id="selected-class" class="selected-class">
+                Odaberi razred iznad
+            </div>
+
+            <button id="add-point" class="add-button" disabled>
+                +1 BOD
+            </button>
+
+            <p id="admin-message" class="message" aria-live="polite">
+                Spremno za bodovanje.
+            </p>
+            <p class="hint">
+                Svaki pritisak dodaje jedan bod. Provjeri razred prije pritiska.
+            </p>
+        </section>
+
+        <!-- TV PRIKAZ -->
+        <section id="tv-view" class="panel tv-panel hidden">
+            <div class="tv-heading">
+                <p class="eyebrow">KESTENIJADA</p>
+                <h2>Ljestvica poretka</h2>
+                <p>Trenutačni rezultati svih razreda</p>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mjesto</th>
+                            <th>Razred</th>
+                            <th class="points-heading">Bodovi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard">
+                        <tr>
+                            <td colspan="3" class="empty-state">
+                                Učitavanje rezultata...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <footer class="tv-footer">
+                <span>🌰 Kestenijada</span>
+                <span id="last-updated">Čekam podatke...</span>
+            </footer>
+        </section>
+
+        <!-- NEPOZNATI PRIKAZ -->
+        <section id="invalid-view" class="panel hidden">
+            <h2>Odaberi prikaz</h2>
+            <p>Za animatore koristi adresu s <code>?mode=admin</code>.</p>
+            <p>Za televiziju koristi adresu s <code>?mode=tv</code>.</p>
+        </section>
+    </main>
+
+    <script>
+        // Prikazujemo odgovarajući panel prema adresi.
+        const mode = new URLSearchParams(location.search).get("mode");
+
+        document.getElementById("admin-view").classList.toggle(
+            "hidden", mode !== "admin"
+        );
+        document.getElementById("tv-view").classList.toggle(
+            "hidden", mode !== "tv"
+        );
+        document.getElementById("invalid-view").classList.toggle(
+            "hidden", mode === "admin" || mode === "tv"
+        );
+    </script>
+</body>
+</html>
