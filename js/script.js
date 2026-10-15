@@ -26,7 +26,7 @@ const db = getFirestore(app);
 
 // Postojeći dokument u Firestoreu:
 // kestenijada (collection) -> bodovi (document)
-const bodoviRef = doc(db, "kestenijada", "bodovi");
+const bodoviRef = doc(db, "kestenijada", "bodovanje");
 
 // PRIVREMENI POPIS RAZREDA
 // Zamijeni ga svim stvarnim razredima.
