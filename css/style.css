@@ -5,7 +5,7 @@
     --surface-light: #33271c;
     --accent: #d99a48;
     --accent-light: #f5c77e;
-    --text: #fff8ed;
+    --text: #e7981d;
     --muted: #c1b3a1;
     --border: #51402d;
     --success: #7ddba0;
@@ -23,7 +23,7 @@ body {
         radial-gradient(ellipse at top, #3b2919 0%, transparent 60%),
         var(--background);
     color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: cursive;
 }
 
 .header {
@@ -105,6 +105,7 @@ main {
 h2 {
     margin: 0 0 100px;
     font-size: clamp(80px, 5vw, 80px);
+    text-align: center;
 }
 
 .section-heading > p:last-child,
