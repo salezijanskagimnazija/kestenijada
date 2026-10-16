@@ -33,7 +33,16 @@ const bodoviRef = doc(db, "kestenijada", "bodovanje");
 const RAZREDI = [
     "1k",
     "1sa",
-    "1sb"
+    "1sb",
+    "2k",
+    "2sa",
+    "2sb",
+    "3k",
+    "3sa",
+    "3sb",
+    "4k",
+    "4sa",
+    "4sb"
 ];
 
 // Elementi sučelja
