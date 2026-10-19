@@ -370,3 +370,91 @@ tr.top-three td {
     }
 }
 
+
+/* Prva tri mjesta ostaju u zasebnoj tablici. */
+
+.top-three-wrap {
+    width: 100%;
+    margin-bottom: 22px;
+}
+
+.top-three-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+/* Ostali razredi: tri kartice u svakom redu. */
+
+.rest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.rank-card {
+    display: flex;
+    min-width: 0;
+    min-height: 125px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 8px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface-light);
+    text-align: center;
+}
+
+.rank-card-place {
+    color: var(--muted);
+    font-size: clamp(12px, 1.5vw, 16px);
+    font-weight: 700;
+}
+
+.rank-card-class {
+    color: var(--text);
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 900;
+    overflow-wrap: anywhere;
+}
+
+.rank-card-points {
+    color: var(--accent-light);
+    font-size: clamp(13px, 1.7vw, 18px);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Prilagodba televizorima i manjim ekranima. */
+
+@media (min-width: 1000px) {
+    .rank-card {
+        min-height: 145px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rest-grid {
+        gap: 7px;
+    }
+
+    .rank-card {
+        min-height: 105px;
+        padding: 10px 4px;
+        gap: 6px;
+    }
+
+    .rank-card-place {
+        font-size: 11px;
+    }
+
+    .rank-card-class {
+        font-size: 21px;
+    }
+
+    .rank-card-points {
+        font-size: 12px;
+    }
+}
