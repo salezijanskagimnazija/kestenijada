@@ -436,25 +436,27 @@ tr.top-three td {
 }
 
 @media (max-width: 480px) {
-    .rest-grid {
-        gap: 7px;
-    }
+    /* Kartice razreda ne smiju izaći iz okvira ljestvice. */
+.rest-grid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
 
-    .rank-card {
-        min-height: 105px;
-        padding: 10px 4px;
-        gap: 6px;
-    }
+.rank-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+}
 
-    .rank-card-place {
-        font-size: 11px;
-    }
-
-    .rank-card-class {
-        font-size: 21px;
-    }
-
-    .rank-card-points {
-        font-size: 12px;
-    }
+.rank-card-place,
+.rank-card-class,
+.rank-card-points {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    text-align: center;
+}
 }
