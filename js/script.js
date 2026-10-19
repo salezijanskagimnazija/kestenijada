@@ -53,8 +53,6 @@ const addPointButton = document.getElementById("add-point");
 const adminMessage = document.getElementById("admin-message");
 const leaderboard = document.getElementById("leaderboard");
 const lastUpdated = document.getElementById("last-updated");
-const gameSelect = document.getElementById("game-select");
-const currentGame = document.getElementById("current-game");
 
 const params = new URLSearchParams(window.location.search);
 const mode = params.get("mode");
@@ -63,28 +61,6 @@ const mode = params.get("mode");
 let selectedClass = null;
 let isSaving = false;
 let latestScores = {};
-
-// Postavi igru iz URL-a, primjerice ?mode=admin&game=Igra%201
-const gameFromUrl = params.get("game");
-
-if (
-    gameFromUrl &&
-    Array.from(gameSelect.options).some(
-        option => option.value === gameFromUrl
-    )
-) {
-    gameSelect.value = gameFromUrl;
-}
-
-currentGame.textContent = gameSelect.value;
-
-gameSelect.addEventListener("change", () => {
-    currentGame.textContent = gameSelect.value;
-
-    const url = new URL(window.location.href);
-    url.searchParams.set("game", gameSelect.value);
-    window.history.replaceState({}, "", url);
-});
 
 // Prikaz statusa veze
 function setStatus(message, state = "") {
@@ -153,41 +129,34 @@ async function addPoint() {
 
     isSaving = true;
     addPointButton.disabled = true;
-    gameSelect.disabled = true;
 
     const razredZaUpis = selectedClass;
-    const igraZaUpis = gameSelect.value;
 
     addPointButton.textContent = "SPREMANJE...";
     showAdminMessage("Spremam bod...");
 
     try {
-        // Atomski povećava polje razreda za točno jedan.
-        // Ne čita pa ponovno upisuje staru vrijednost.
-        await updateDoc(bodoviRef, {
-            [razredZaUpis]: increment(1)
-        });
+    await updateDoc(bodoviRef, {
+        [razredZaUpis]: increment(1)
+    });
 
-        showAdminMessage(
-            `Dodijeljen je 1 bod razredu ${razredZaUpis}.`
-        );
+    showAdminMessage(
+        `Dodijeljen je 1 bod razredu ${razredZaUpis}.`
+    );
 
-        console.info(
-            `Bod dodan. Igra: ${igraZaUpis}, razred: ${razredZaUpis}`
-        );
-    } catch (error) {
-        console.error("Greška pri spremanju boda:", error);
+    console.info(`Bod dodan razredu: ${razredZaUpis}`);
+} catch (error) {
+    console.error("Greška pri spremanju boda:", error);
 
-        showAdminMessage(
-            "Bod nije potvrđen. Provjeri vezu i Firebase pravila.",
-            true
-        );
-    } finally {
-        isSaving = false;
-        addPointButton.textContent = "+1 BOD";
-        addPointButton.disabled = !selectedClass;
-        gameSelect.disabled = false;
-    }
+    showAdminMessage(
+        "Bod nije potvrđen. Provjeri vezu i Firebase pravila.",
+        true
+    );
+} finally {
+    isSaving = false;
+    addPointButton.textContent = "+1 BOD";
+    addPointButton.disabled = !selectedClass;
+}
 }
 
 addPointButton.addEventListener("click", addPoint);
