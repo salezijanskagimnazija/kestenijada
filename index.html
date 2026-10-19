@@ -59,8 +59,9 @@
                 <h2>Ljestvica poretka</h2>
             </div>
 
-            <div class="table-wrap">
-                <table>
+            
+            <div class="top-three-wrap">
+                <table class="top-three-table">
                     <thead>
                         <tr>
                             <th>Mjesto</th>
@@ -68,7 +69,7 @@
                             <th class="points-heading">Bodovi</th>
                         </tr>
                     </thead>
-                    <tbody id="leaderboard">
+                    <tbody id="top-three-leaderboard">
                         <tr>
                             <td colspan="3" class="empty-state">
                                 Učitavanje rezultata...
@@ -77,6 +78,11 @@
                     </tbody>
                 </table>
             </div>
+            
+            <div id="rest-leaderboard" class="rest-grid">
+                <!-- Razredi od 4. do 12. mjesta generiraju se u JavaScriptu -->
+            </div>
+
 
             <footer class="tv-footer">
                 <span>🌰 Kestenijada</span>
