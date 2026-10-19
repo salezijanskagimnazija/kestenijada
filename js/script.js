@@ -162,16 +162,20 @@ async function addPoint() {
 addPointButton.addEventListener("click", addPoint);
 
 // Prikaz TV ljestvice
+
 function renderLeaderboard(scores) {
-    leaderboard.replaceChildren();
+    const topThree = document.getElementById("top-three-leaderboard");
+    const restGrid = document.getElementById("rest-leaderboard");
+
+    topThree.replaceChildren();
+    restGrid.replaceChildren();
 
     const entries = RAZREDI.map(razred => ({
         razred,
         bodovi: Number(scores[razred] ?? 0)
     }));
 
-    // Najviše bodova na prvom mjestu.
-    // Abecedno sortiranje razrješava samo prikaz izjednačenja.
+    // Sortiranje od najvećeg prema najmanjem broju bodova.
     entries.sort((a, b) =>
         b.bodovi - a.bodovi ||
         a.razred.localeCompare(b.razred, "hr")
@@ -181,10 +185,7 @@ function renderLeaderboard(scores) {
     let previousRank = 0;
 
     entries.forEach((entry, index) => {
-        const row = document.createElement("tr");
-
-        // Jednaki rezultati dobivaju jednako mjesto:
-        // 1., 1., 3.
+        // Zadržavamo postojeće pravilo za izjednačene rezultate.
         const rank = entry.bodovi === previousScore
             ? previousRank
             : index + 1;
@@ -192,36 +193,62 @@ function renderLeaderboard(scores) {
         previousScore = entry.bodovi;
         previousRank = rank;
 
-        if (rank === 1) row.classList.add("top-one");
-        if (rank === 2) row.classList.add("top-two");
-        if (rank === 3) row.classList.add("top-three");
-
-        const placeCell = document.createElement("td");
-        const classCell = document.createElement("td");
-        const pointsCell = document.createElement("td");
-
         const medals = {
             1: "🥇",
             2: "🥈",
             3: "🥉"
         };
 
-        const medal = medals[rank];
+        if (index < 3) {
+            // PRVA TRI RAZREDA: zasebni redovi u tablici.
+            const row = document.createElement("tr");
 
-        if (medal) {
-            const medalSpan = document.createElement("span");
-            medalSpan.className = "place-medal";
-            medalSpan.textContent = medal;
-            placeCell.appendChild(medalSpan);
+            if (rank === 1) row.classList.add("top-one");
+            if (rank === 2) row.classList.add("top-two");
+            if (rank === 3) row.classList.add("top-three");
+
+            const placeCell = document.createElement("td");
+            const classCell = document.createElement("td");
+            const pointsCell = document.createElement("td");
+
+            if (medals[rank]) {
+                const medal = document.createElement("span");
+                medal.className = "place-medal";
+                medal.textContent = medals[rank];
+                placeCell.appendChild(medal);
+            }
+
+            placeCell.append(`${rank}. mjesto`);
+            classCell.textContent = entry.razred;
+            pointsCell.textContent = entry.bodovi;
+            pointsCell.className = "points-cell";
+
+            row.append(placeCell, classCell, pointsCell);
+            topThree.appendChild(row);
+
+        } else {
+            // OD 4. MJESTA NADALJE: kartice u mreži od 3 stupca.
+            const card = document.createElement("div");
+            card.className = "rank-card";
+
+            const place = document.createElement("div");
+            place.className = "rank-card-place";
+            place.textContent = `${rank}. mjesto`;
+
+            const className = document.createElement("div");
+            className = Object.assign(
+                document.createElement("div"),
+                { className: "rank-card-class" }
+            );
+            className.textContent = entry.razred;
+
+            const points = document.createElement("div");
+            points.className = "rank-card-points";
+            points.textContent = `${entry.bodovi} bodova`;
+
+            card.append(place, className, points);
+            restGrid.appendChild(card);
         }
-
-        placeCell.append(`${rank}.`);
-        classCell.textContent = entry.razred;
-        pointsCell.textContent = entry.bodovi;
-        pointsCell.className = "points-cell";
-
-        row.append(placeCell, classCell, pointsCell);
-        leaderboard.appendChild(row);
     });
 
     lastUpdated.textContent =
@@ -232,6 +259,7 @@ function renderLeaderboard(scores) {
             second: "2-digit"
         });
 }
+
 
 // Slušanje promjena u Firestore dokumentu.
 // Isti listener ažurira TV i lokalni prikaz nakon upisa.
