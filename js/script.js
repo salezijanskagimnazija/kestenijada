@@ -236,11 +236,8 @@ function renderLeaderboard(scores) {
             place.textContent = `${rank}. mjesto`;
 
             const className = document.createElement("div");
-            className = Object.assign(
-                document.createElement("div"),
-                { className: "rank-card-class" }
-            );
-            className.textContent = entry.razred;
+className.className = "rank-card-class";
+className.textContent = entry.razred;
 
             const points = document.createElement("div");
             points.className = "rank-card-points";
