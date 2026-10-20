@@ -460,3 +460,24 @@ tr.top-three td {
     text-align: center;
 }
 }
+
+/* Animatorski panel: vizualni prikaz cooldowna po razredu */
+.class-button:hover:not(:disabled) {
+    border-color: var(--accent);
+}
+
+.class-button:disabled {
+    cursor: not-allowed;
+}
+
+.class-button.cooldown {
+    opacity: 0.55;
+    filter: grayscale(0.4);
+    border-color: var(--border);
+    background: var(--surface);
+    cursor: not-allowed;
+}
+
+.class-button.cooldown:hover {
+    border-color: var(--border);
+}
