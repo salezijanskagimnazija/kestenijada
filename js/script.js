@@ -31,7 +31,7 @@ const RAZREDI = [
 ];
 
 // ---- Cooldown postavke ----
-const COOLDOWN_MS = 10000;                // 10 sekundi
+const COOLDOWN_MS = 5000;                // 10 sekundi
 const STORAGE_KEY = "kestenijada-cooldowns";
 
 // Elementi
