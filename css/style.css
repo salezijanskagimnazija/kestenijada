@@ -23,7 +23,6 @@ body {
         radial-gradient(ellipse at top, #3b2919 0%, transparent 60%),
         var(--background);
     color: var(--text);
-    font-family: cursive;
 }
 
 .header {
