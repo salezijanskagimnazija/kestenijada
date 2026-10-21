@@ -79,7 +79,7 @@ main {
 .panel {
     display: flex;
     flex-direction: column;
-    padding: clamp(10px, 4vw, 50px);
+    padding: clamp(10px, 8vw, 50px);
     border: 5px solid var(--border);
     border-radius: 50px;
     background: rgba(37, 28, 20, 0.96);
@@ -103,7 +103,7 @@ main {
 }
 
 h2 {
-    margin: 0 0 100px;
+    margin: 0 0 30px;
     font-size: clamp(80px, 5vw, 80px);
     text-align: center;
 }
@@ -116,7 +116,7 @@ h2 {
 label,
 .class-label {
     display: block;
-    margin: 22px 0 10px;
+    margin: 10px 0 10px;
     font-weight: 700;
 }
 
@@ -149,7 +149,7 @@ select {
 
 .class-button {
     text-align: center;
-    margin: 20px;
+    margin: 5px;
     min-height: 74px;
     padding: 20px 8px;
     border: 5px solid var(--border);
@@ -476,6 +476,7 @@ tr.top-three td {
     border-color: var(--border);
     background: var(--surface);
     cursor: not-allowed;
+    font-size: 20px;
 }
 
 .class-button.cooldown:hover {
