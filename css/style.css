@@ -481,3 +481,7 @@ tr.top-three td {
 .class-button.cooldown:hover {
     border-color: var(--border);
 }
+
+.home-btn {
+    padding: 0 0;
+}
