@@ -368,9 +368,6 @@ tr.top-three td {
     .place-medal {
         margin-right: 3px;
     }
-    .top-three-wrap {
-        flex-direction:column;
-    }
 }
 
 
@@ -438,6 +435,12 @@ tr.top-three td {
 @media (min-width: 1000px) {
     .rank-card {
         min-height: 145px;
+    }
+}
+
+@media (max-width:1000px){
+    .top-three-wrap {
+        flex-direction:column;
     }
 }
 
