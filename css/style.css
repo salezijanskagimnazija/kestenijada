@@ -368,6 +368,9 @@ tr.top-three td {
     .place-medal {
         margin-right: 3px;
     }
+    .top-three-wrap {
+        flex-direction:column;
+    }
 }
 
 
