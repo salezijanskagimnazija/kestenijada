@@ -1,112 +1,320 @@
-
 <!DOCTYPE html>
 <html lang="hr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#20180f">
+
     <title>Kestenijada – Bodovanje</title>
+
     <link rel="stylesheet" href="css/style.css">
     <script type="module" src="js/script.js"></script>
 </head>
+
 <body>
+
     <header class="header">
+
         <div class="brand">
             <span class="brand-icon">🌰</span>
+
             <div>
                 <h1>Kestenijada</h1>
                 <p>Sustav bodovanja</p>
             </div>
         </div>
+
         <div id="connection-status" class="status">
             Povezivanje...
         </div>
-        <a href="https://salezijanskagimnazija.github.io/kestenijada" class="class-button home-btn" aria-label="Home page">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M3 21h18M4 21V10l8-7 8 7v11M10 21v-6h4v6" />
-                  </svg>
-            </a>
+
+        <a
+            href="https://salezijanskagimnazija.github.io/kestenijada"
+            class="class-button home-btn"
+            aria-label="Home page"
+        >
+            <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+            >
+                <path d="M3 21h18M4 21V10l8-7 8 7v11M10 21v-6h4v6" />
+            </svg>
+        </a>
+
     </header>
 
+
     <main>
-        <!-- PRIKAZ ZA ANIMATORE -->
+
+        <!-- ========================================= -->
+        <!-- ANIMATOR PANEL -->
+        <!-- ========================================= -->
+
         <section id="admin-view" class="panel hidden">
+
             <div class="section-heading">
-                <p class="eyebrow">ANIMATORSKI PANEL</p>
-                <h2>Dodjela bodova</h2>
-                <p>Klikni na razred da mu odmah dodaš jedan bod.</p>
+
+                <p class="eyebrow">
+                    ANIMATORSKI PANEL
+                </p>
+
+                <h2>
+                    Dodjela bodova
+                </h2>
+
+                <p>
+                    Klikni na razred da mu odmah dodaš jedan bod.
+                </p>
+
             </div>
-        
-            <label class="class-label">Odaberi razred</label>
+
+
+            <label class="class-label">
+                Odaberi razred
+            </label>
+
+
             <div id="class-buttons" class="class-grid">
                 <!-- Gumbi se generiraju u JavaScriptu -->
             </div>
-        
-            <p id="admin-message" class="message" aria-live="polite">
+
+
+            <p
+                id="admin-message"
+                class="message"
+                aria-live="polite"
+            >
                 Spremno za bodovanje.
             </p>
+
+
             <p class="hint">
-                Svaki klik dodaje jedan bod. Nakon klika isti razred je blokiran ~10 sekundi.
+                Svaki klik dodaje jedan bod.
+                Nakon klika isti razred je blokiran nekoliko sekundi.
             </p>
+
         </section>
 
-        <!-- TV PRIKAZ -->
+
+
+        <!-- ========================================= -->
+        <!-- TV PANEL -->
+        <!-- ========================================= -->
+
         <section id="tv-view" class="panel tv-panel hidden">
+
             <div class="tv-heading">
-                <h2>Ljestvica poretka</h2>
+
+                <h2>
+                    Ljestvica poretka
+                </h2>
+
             </div>
 
-            
+
             <div class="top-three-wrap">
+
                 <table class="top-three-table">
+
                     <thead>
                         <tr>
                             <th>Mjesto</th>
                             <th>Razred</th>
-                            <th class="points-heading">Bodovi</th>
+                            <th class="points-heading">
+                                Bodovi
+                            </th>
                         </tr>
                     </thead>
+
                     <tbody id="top-three-leaderboard">
+
                         <tr>
-                            <td colspan="3" class="empty-state">
+                            <td
+                                colspan="3"
+                                class="empty-state"
+                            >
                                 Učitavanje rezultata...
                             </td>
                         </tr>
+
                     </tbody>
+
                 </table>
-                <div id="rest-leaderboard" class="rest-grid">
-                    <!-- Razredi od 4. do 12. mjesta generiraju se u JavaScriptu -->
+
+
+                <div
+                    id="rest-leaderboard"
+                    class="rest-grid"
+                >
+                    <!-- Razredi od 4. mjesta nadalje -->
                 </div>
+
             </div>
 
 
             <footer class="tv-footer">
-                <span>🌰 Kestenijada</span>
-                <span id="last-updated">Čekam podatke...</span>
+
+                <span>
+                    🌰 Kestenijada
+                </span>
+
+                <span id="last-updated">
+                    Čekam podatke...
+                </span>
+
             </footer>
+
         </section>
 
-        <!-- NEPOZNATI PRIKAZ -->
-        <section id="invalid-view" class="panel hidden">
-            <h2>Odaberi prikaz</h2>
-            <a href="https://salezijanskagimnazija.github.io/kestenijada/?mode=admin" class="button class-button class-button.selected">Animator</a>
-            <a href="https://salezijanskagimnazija.github.io/kestenijada/?mode=tv" class="button class-button class-button.selected">Ljestvica</a>
+
+
+        <!-- ========================================= -->
+        <!-- MASTER PANEL -->
+        <!-- ========================================= -->
+
+        <section id="master-view" class="panel master-panel hidden">
+
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    MASTER PANEL
+                </p>
+
+                <h2>
+                    Upravljanje bodovanjem
+                </h2>
+
+                <p>
+                    Ovdje možeš resetirati sve rezultate.
+                </p>
+
+            </div>
+
+
+            <div class="master-warning">
+
+                <strong>⚠ PAŽNJA</strong>
+
+                <p>
+                    Ova radnja će postaviti bodove svih razreda na 0.
+                    Podatak se odmah mijenja u bazi i prikaz na TV-u
+                    će se automatski ažurirati.
+                </p>
+
+            </div>
+
+
+            <button
+                id="reset-button"
+                class="reset-button"
+                type="button"
+            >
+                RESETIRAJ SVE BODOVE
+            </button>
+
+
+            <p
+                id="master-message"
+                class="message"
+                aria-live="polite"
+            >
+                Spremno.
+            </p>
+
         </section>
+
+
+
+        <!-- ========================================= -->
+        <!-- NEPOZNATI PRIKAZ -->
+        <!-- ========================================= -->
+
+        <section
+            id="invalid-view"
+            class="panel hidden"
+        >
+
+            <h2>
+                Odaberi prikaz
+            </h2>
+
+
+            <div class="invalid-buttons">
+
+                <a
+                    href="https://salezijanskagimnazija.github.io/kestenijada/?mode=admin"
+                    class="button class-button"
+                >
+                    Animator
+                </a>
+
+
+                <a
+                    href="https://salezijanskagimnazija.github.io/kestenijada/?mode=tv"
+                    class="button class-button"
+                >
+                    Ljestvica
+                </a>
+
+            </div>
+
+        </section>
+
     </main>
 
-    <script>
-        // Prikazujemo odgovarajući panel prema adresi.
-        const mode = new URLSearchParams(location.search).get("mode");
 
-        document.getElementById("admin-view").classList.toggle(
-            "hidden", mode !== "admin"
-        );
-        document.getElementById("tv-view").classList.toggle(
-            "hidden", mode !== "tv"
-        );
-        document.getElementById("invalid-view").classList.toggle(
-            "hidden", mode === "admin" || mode === "tv"
-        );
+
+    <!-- ========================================= -->
+    <!-- ODABIR PRIKAZA -->
+    <!-- ========================================= -->
+
+    <script>
+
+        const mode =
+            new URLSearchParams(location.search).get("mode");
+
+
+        document
+            .getElementById("admin-view")
+            .classList.toggle(
+                "hidden",
+                mode !== "admin"
+            );
+
+
+        document
+            .getElementById("tv-view")
+            .classList.toggle(
+                "hidden",
+                mode !== "tv"
+            );
+
+
+        document
+            .getElementById("master-view")
+            .classList.toggle(
+                "hidden",
+                mode !== "master"
+            );
+
+
+        document
+            .getElementById("invalid-view")
+            .classList.toggle(
+                "hidden",
+                mode === "admin" ||
+                mode === "tv" ||
+                mode === "master"
+            );
+
     </script>
+
 </body>
 </html>
