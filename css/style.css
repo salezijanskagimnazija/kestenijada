@@ -72,7 +72,7 @@ body {
 }
 
 main {
-    width: min(100% - 28px, 900px);
+    width: min(100% - 28px, 90%);
     margin: 36px auto;
 }
 
@@ -376,12 +376,14 @@ tr.top-three td {
 .top-three-wrap {
     width: 100%;
     margin-bottom: 22px;
+    display:flex;
 }
 
 .top-three-table {
-    width: 100%;
+    flex: 50%;
     border-collapse: separate;
     border-spacing: 0 8px;
+    padding-right: 20px;
 }
 
 /* Ostali razredi: tri kartice u svakom redu. */
@@ -390,6 +392,7 @@ tr.top-three td {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
+    flex:50%;
 }
 
 .rank-card {
