@@ -1,509 +1,1132 @@
-
 :root {
     --background: #17120d;
     --surface: #251c14;
     --surface-light: #33271c;
+
     --accent: #d99a48;
     --accent-light: #f5c77e;
+
     --text: #e7981d;
     --muted: #c1b3a1;
+
     --border: #51402d;
+
     --success: #7ddba0;
     --danger: #ff9b91;
 }
+
+
+/* ========================================= */
+/* OSNOVNO */
+/* ========================================= */
 
 * {
     box-sizing: border-box;
 }
 
 
+html,
 body {
     margin: 0;
+    min-height: 100%;
+    font-family: Arial, sans-serif;
+    font-style: normal;
+}
+
+
+body {
     min-height: 100vh;
+
     background:
-        radial-gradient(ellipse at top, #3b2919 0%, transparent 60%),
+        radial-gradient(
+            ellipse at top,
+            #3b2919 0%,
+            transparent 60%
+        ),
         var(--background);
+
     color: var(--text);
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 18px clamp(16px, 4vw, 48px);
-    border-bottom: 1px solid var(--border);
-    background: rgba(23, 18, 13, 0.9);
+
+button,
+a,
+input,
+select,
+textarea {
+    font-family: Arial, sans-serif;
+    font-style: normal;
 }
 
-.brand {
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+
+.header {
+
     display: flex;
+
     align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+    padding:
+        18px
+        clamp(16px, 4vw, 48px);
+
+    border-bottom:
+        1px solid var(--border);
+
+    background:
+        rgba(23, 18, 13, 0.9);
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
     gap: 12px;
 }
+
 
 .brand-icon {
     font-size: 38px;
 }
 
+
 .brand h1 {
+
     margin: 0;
+
     font-size: 24px;
+
+    font-style: normal;
 }
+
 
 .brand p {
-    margin: 4px 0 0;
+
+    margin:
+        4px 0 0;
+
     color: var(--muted);
+
     font-size: 13px;
+
+    font-style: normal;
 }
 
+
 .status {
+
     color: var(--muted);
+
     font-size: 13px;
+
     text-align: right;
+
+    font-style: normal;
 }
+
 
 .status.online {
     color: var(--success);
 }
 
+
 .status.offline {
     color: var(--danger);
 }
 
+
+/* ========================================= */
+/* MAIN */
+/* ========================================= */
+
 main {
-    width: min(100% - 28px, 90%);
-    margin: 36px auto;
+
+    width:
+        min(
+            100% - 28px,
+            90%
+        );
+
+    margin:
+        36px auto;
 }
 
+
+/* ========================================= */
+/* PANEL */
+/* ========================================= */
+
 .panel {
+
     display: flex;
+
     flex-direction: column;
-    padding: clamp(10px, 8vw, 50px);
-    border: 5px solid var(--border);
+
+    padding:
+        clamp(
+            10px,
+            8vw,
+            50px
+        );
+
+    border:
+        5px solid var(--border);
+
     border-radius: 50px;
-    background: rgba(37, 28, 20, 0.96);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+
+    background:
+        rgba(
+            37,
+            28,
+            20,
+            0.96
+        );
+
+    box-shadow:
+        0 20px 60px
+        rgba(0, 0, 0, 0.25);
 }
+
 
 .hidden {
     display: none !important;
 }
 
+
+/* ========================================= */
+/* NASLOVI */
+/* ========================================= */
+
 .section-heading {
     margin-bottom: 28px;
 }
 
+
 .eyebrow {
-    margin: 0 0 10px;
+
+    margin:
+        0 0 10px;
+
     color: var(--accent-light);
+
     font-size: 12px;
+
     font-weight: 800;
+
     letter-spacing: 2px;
+
+    font-style: normal;
 }
 
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+    font-style: normal;
+}
+
+
 h2 {
-    margin: 0 0 30px;
-    font-size: clamp(80px, 5vw, 80px);
+
+    margin:
+        0 0 30px;
+
+    font-size:
+        clamp(
+            36px,
+            5vw,
+            80px
+        );
+
     text-align: center;
 }
+
 
 .section-heading > p:last-child,
 .tv-heading > p:last-child {
+
     color: var(--muted);
 }
+
+
+/* ========================================= */
+/* LABEL / SELECT */
+/* ========================================= */
 
 label,
 .class-label {
+
     display: block;
-    margin: 10px 0 10px;
+
+    margin:
+        10px 0 10px;
+
     font-weight: 700;
+
+    font-style: normal;
 }
 
+
 select {
+
     width: 100%;
+
     min-height: 50px;
+
     padding: 12px;
-    border: 1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius: 10px;
-    background: var(--surface-light);
+
+    background:
+        var(--surface-light);
+
     color: var(--text);
+
     font-size: 16px;
 }
 
-.selected-game {
-    margin-top: 12px;
-    color: var(--muted);
-    font-size: 14px;
-}
 
-.selected-game strong {
-    color: var(--accent-light);
-}
+/* ========================================= */
+/* RAZREDI */
+/* ========================================= */
 
 .class-grid {
+
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
+
     gap: 12px;
 }
 
+
 .class-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
     text-align: center;
+
     margin: 5px;
+
     min-height: 74px;
-    padding: 20px 8px;
-    border: 5px solid var(--border);
+
+    padding:
+        20px 8px;
+
+    border:
+        5px solid var(--border);
+
     border-radius: 50px;
-    background: var(--surface-light);
+
+    background:
+        var(--surface-light);
+
     color: var(--text);
+
     font-size: 34px;
+
     font-weight: 800;
+
+    font-style: normal;
+
     cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
+
+    transition:
+        background 0.15s,
+        border-color 0.15s;
+
     text-decoration: none;
 }
+
 
 .class-button:hover {
     border-color: var(--accent);
 }
 
+
 .class-button.selected {
-    border-color: var(--accent-light);
-    background: #62431f;
-    box-shadow: inset 0 0 0 1px var(--accent-light);
+
+    border-color:
+        var(--accent-light);
+
+    background:
+        #62431f;
+
+    box-shadow:
+        inset
+        0 0 0 1px
+        var(--accent-light);
 }
 
-.selected-class {
-    margin: 28px 0 14px;
-    color: var(--muted);
-    text-align: center;
-}
 
-.selected-class strong {
-    color: var(--accent-light);
-    font-size: 22px;
-}
+.class-button:disabled {
 
-.add-button {
-    width: 100%;
-    min-height: 86px;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #f3bd69, #c67d2c);
-    color: #25170b;
-    font-size: 27px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: transform 0.1s, opacity 0.15s;
-}
-
-.add-button:not(:disabled):active {
-    transform: scale(0.98);
-}
-
-.add-button:disabled {
-    opacity: 0.4;
     cursor: not-allowed;
 }
 
-.message {
-    min-height: 24px;
-    margin: 18px 0 0;
-    text-align: center;
-    color: var(--success);
+
+.class-button.cooldown {
+
+    opacity: 0.55;
+
+    filter:
+        grayscale(0.4);
+
+    border-color:
+        var(--border);
+
+    background:
+        var(--surface);
+
+    cursor:
+        not-allowed;
+
+    font-size: 20px;
 }
+
+
+.class-button.cooldown:hover {
+    border-color:
+        var(--border);
+}
+
+
+/* ========================================= */
+/* HOME GUMB */
+/* ========================================= */
+
+.home-btn {
+
+    width: 60px;
+
+    min-height: 0;
+
+    padding: 0;
+
+    border-radius: 20px;
+}
+
+
+/* ========================================= */
+/* PORUKE */
+/* ========================================= */
+
+.message {
+
+    min-height: 24px;
+
+    margin:
+        18px 0 0;
+
+    text-align: center;
+
+    color: var(--success);
+
+    font-style: normal;
+}
+
 
 .message.error {
     color: var(--danger);
 }
 
+
 .hint {
+
     color: var(--muted);
+
     font-size: 13px;
+
     line-height: 1.5;
+
     text-align: center;
+
+    font-style: normal;
 }
 
-/* TV ljestvica */
+
+/* ========================================= */
+/* TV LJESTVICA */
+/* ========================================= */
 
 .tv-panel {
+
     width: 100%;
-    padding: clamp(16px, 4vw, 40px);
+
+    padding:
+        clamp(
+            16px,
+            4vw,
+            40px
+        );
 }
 
+
 .tv-heading {
+
     margin-bottom: 28px;
+
     text-align: center;
 }
 
+
 .tv-heading h2 {
-    font-size: clamp(32px, 5vw, 54px);
+
+    font-size:
+        clamp(
+            32px,
+            5vw,
+            54px
+        );
 }
 
+
 .tv-heading > p:last-child {
+
     font-size: 17px;
 }
+
 
 .table-wrap {
     overflow-x: auto;
 }
 
+
 table {
+
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 8px;
+
+    border-collapse:
+        separate;
+
+    border-spacing:
+        0 8px;
 }
+
 
 th {
-    padding: 12px 16px;
+
+    padding:
+        12px 16px;
+
     color: var(--muted);
+
     font-size: 13px;
+
     letter-spacing: 1px;
+
     text-align: left;
+
     text-transform: uppercase;
+
+    font-style: normal;
 }
+
 
 td {
-    padding: 18px 16px;
-    background: var(--surface-light);
-    font-size: clamp(18px, 3vw, 26px);
+
+    padding:
+        18px 16px;
+
+    background:
+        var(--surface-light);
+
+    font-size:
+        clamp(
+            18px,
+            3vw,
+            26px
+        );
+
+    font-style: normal;
 }
 
+
 td:first-child {
+
     width: 100px;
-    border-radius: 12px 0 0 12px;
-    color: var(--accent-light);
+
+    border-radius:
+        12px 0 0 12px;
+
+    color:
+        var(--accent-light);
+
     font-weight: 800;
 }
 
+
 td:last-child {
-    border-radius: 0 12px 12px 0;
+
+    border-radius:
+        0 12px 12px 0;
 }
+
 
 .points-heading,
 .points-cell {
     text-align: right;
 }
 
+
 .points-cell {
-    color: var(--accent-light);
-    font-size: clamp(24px, 4vw, 34px);
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        clamp(
+            24px,
+            4vw,
+            34px
+        );
+
     font-weight: 900;
-    font-variant-numeric: tabular-nums;
+
+    font-variant-numeric:
+        tabular-nums;
 }
+
 
 tr.top-one td {
     background: #62451f;
 }
 
+
 tr.top-two td {
     background: #40362b;
 }
+
 
 tr.top-three td {
     background: #493324;
 }
 
+
 .place-medal {
+
     display: inline-block;
+
     margin-right: 8px;
 }
 
+
 .empty-state {
+
     border-radius: 12px;
+
     color: var(--muted);
+
     text-align: center;
 }
 
+
+/* ========================================= */
+/* TV FOOTER */
+/* ========================================= */
+
 .tv-footer {
+
     display: flex;
-    justify-content: space-between;
+
+    justify-content:
+        space-between;
+
     gap: 12px;
+
     margin-top: 22px;
+
     color: var(--muted);
+
     font-size: 13px;
 }
 
-@media (min-width: 700px) {
-    .class-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-}
 
-@media (max-width: 480px) {
-    .header {
-        padding: 14px;
-    }
-
-    .brand h1 {
-        font-size: 20px;
-    }
-
-    .brand-icon {
-        font-size: 30px;
-    }
-
-    .status {
-        max-width: 110px;
-        font-size: 11px;
-    }
-
-    main {
-        margin: 20px auto;
-    }
-
-    .class-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    th,
-    td {
-        padding: 14px 10px;
-    }
-
-    td:first-child {
-        width: 72px;
-    }
-
-    .place-medal {
-        margin-right: 3px;
-    }
-}
-
-
-/* Prva tri mjesta ostaju u zasebnoj tablici. */
+/* ========================================= */
+/* PRVA TRI + OSTALI */
+/* ========================================= */
 
 .top-three-wrap {
+
     width: 100%;
+
     margin-bottom: 22px;
-    display:flex;
+
+    display: flex;
 }
 
+
 .top-three-table {
+
     flex: 50%;
-    border-collapse: separate;
-    border-spacing: 0 8px;
+
+    border-collapse:
+        separate;
+
+    border-spacing:
+        0 8px;
+
     padding-right: 20px;
 }
 
-/* Ostali razredi: tri kartice u svakom redu. */
 
 .rest-grid {
+
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(0, 1fr)
+        );
+
     gap: 12px;
-    flex:50%;
+
+    flex: 50%;
 }
 
+
 .rank-card {
+
     display: flex;
+
     min-width: 0;
+
     min-height: 125px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+
+    flex-direction:
+        column;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
     gap: 8px;
-    padding: 14px 8px;
-    border: 1px solid var(--border);
+
+    padding:
+        14px 8px;
+
+    border:
+        1px solid var(--border);
+
     border-radius: 12px;
-    background: var(--surface-light);
+
+    background:
+        var(--surface-light);
+
     text-align: center;
 }
+
 
 .rank-card-place {
-    color: var(--muted);
-    font-size: clamp(12px, 1.5vw, 16px);
+
+    color:
+        var(--muted);
+
+    font-size:
+        clamp(
+            12px,
+            1.5vw,
+            16px
+        );
+
     font-weight: 700;
 }
+
 
 .rank-card-class {
-    color: var(--text);
-    font-size: clamp(22px, 3vw, 32px);
+
+    color:
+        var(--text);
+
+    font-size:
+        clamp(
+            22px,
+            3vw,
+            32px
+        );
+
     font-weight: 900;
-    overflow-wrap: anywhere;
+
+    overflow-wrap:
+        anywhere;
 }
 
+
 .rank-card-points {
-    color: var(--accent-light);
-    font-size: clamp(13px, 1.7vw, 18px);
+
+    color:
+        var(--accent-light);
+
+    font-size:
+        clamp(
+            13px,
+            1.7vw,
+            18px
+        );
+
     font-weight: 700;
-    font-variant-numeric: tabular-nums;
+
+    font-variant-numeric:
+        tabular-nums;
 }
 
-/* Prilagodba televizorima i manjim ekranima. */
 
-@media (min-width: 1000px) {
-    .rank-card {
-        min-height: 145px;
-    }
+/* ========================================= */
+/* MASTER PANEL */
+/* ========================================= */
+
+.master-panel {
+
+    max-width: 900px;
+
+    margin:
+        0 auto;
 }
 
-@media (max-width:1000px){
-    .top-three-wrap {
-        flex-direction:column;
-    }
-    .top-three-table {
-        padding-right:0;
-    }
-}
 
-@media (max-width: 480px) {
-    /* Kartice razreda ne smiju izaći iz okvira ljestvice. */
-.rest-grid {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow: hidden;
-}
+.master-warning {
 
-.rank-card {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    overflow: hidden;
-}
+    margin:
+        10px 0 28px;
 
-.rank-card-place,
-.rank-card-class,
-.rank-card-points {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    padding: 20px;
+
+    border:
+        2px solid #8f5d2b;
+
+    border-radius: 16px;
+
+    background:
+        rgba(
+            120,
+            70,
+            20,
+            0.25
+        );
+
+    color:
+        var(--muted);
+
     text-align: center;
 }
+
+
+.master-warning strong {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color:
+        var(--accent-light);
+
+    font-size: 18px;
 }
 
-/* Animatorski panel: vizualni prikaz cooldowna po razredu */
-.class-button:hover:not(:disabled) {
-    border-color: var(--accent);
+
+.master-warning p {
+
+    margin: 0;
+
+    line-height: 1.5;
 }
 
-.class-button:disabled {
-    cursor: not-allowed;
+
+.reset-button {
+
+    width: 100%;
+
+    min-height: 90px;
+
+    padding: 20px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b83b2e,
+            #7e211a
+        );
+
+    color: #ffffff;
+
+    font-size: 26px;
+
+    font-weight: 900;
+
+    font-style: normal;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.1s,
+        opacity 0.15s,
+        filter 0.15s;
 }
 
-.class-button.cooldown {
-    opacity: 0.55;
-    filter: grayscale(0.4);
-    border-color: var(--border);
-    background: var(--surface);
-    cursor: not-allowed;
-    font-size: 20px;
+
+.reset-button:hover:not(:disabled) {
+
+    filter:
+        brightness(1.12);
 }
 
-.class-button.cooldown:hover {
-    border-color: var(--border);
+
+.reset-button:active:not(:disabled) {
+
+    transform:
+        scale(0.98);
 }
 
-.home-btn {
-    padding: 0 0;
-    width: 60px;
-    min-height: 0;
-    border-radius: 20px;
+
+.reset-button:disabled {
+
+    opacity: 0.5;
+
+    cursor:
+        not-allowed;
 }
 
-body,
-body * {
-    font-family: Arial, sans-serif !important;
-    font-style: normal !important;
+
+/* ========================================= */
+/* INVALID VIEW */
+/* ========================================= */
+
+.invalid-buttons {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    gap: 15px;
+}
+
+
+/* ========================================= */
+/* TABLET / DESKTOP */
+/* ========================================= */
+
+@media (min-width: 700px) {
+
+    .class-grid {
+
+        grid-template-columns:
+            repeat(
+                4,
+                minmax(0, 1fr)
+            );
+
+    }
+
+}
+
+
+/* ========================================= */
+/* VEĆI TV */
+/* ========================================= */
+
+@media (min-width: 1000px) {
+
+    .rank-card {
+
+        min-height: 145px;
+
+    }
+
+}
+
+
+/* ========================================= */
+/* MANJI EKRANI */
+/* ========================================= */
+
+@media (max-width: 1000px) {
+
+    .top-three-wrap {
+
+        flex-direction:
+            column;
+
+    }
+
+
+    .top-three-table {
+
+        padding-right: 0;
+
+    }
+
+}
+
+
+/* ========================================= */
+/* MOBITEL */
+/* ========================================= */
+
+@media (max-width: 480px) {
+
+    .header {
+
+        padding: 14px;
+
+    }
+
+
+    .brand h1 {
+
+        font-size: 20px;
+
+    }
+
+
+    .brand-icon {
+
+        font-size: 30px;
+
+    }
+
+
+    .status {
+
+        max-width: 110px;
+
+        font-size: 11px;
+
+    }
+
+
+    main {
+
+        margin:
+            20px auto;
+
+    }
+
+
+    .class-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+    }
+
+
+    th,
+    td {
+
+        padding:
+            14px 10px;
+
+    }
+
+
+    td:first-child {
+
+        width: 72px;
+
+    }
+
+
+    .place-medal {
+
+        margin-right: 3px;
+
+    }
+
+
+    .rest-grid {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        min-width: 0;
+
+        overflow: hidden;
+
+    }
+
+
+    .rank-card {
+
+        width: 100%;
+
+        max-width: 100%;
+
+        min-width: 0;
+
+        overflow: hidden;
+
+    }
+
+
+    .rank-card-place,
+    .rank-card-class,
+    .rank-card-points {
+
+        max-width: 100%;
+
+        overflow-wrap:
+            anywhere;
+
+        word-break:
+            break-word;
+
+        text-align: center;
+
+    }
+
+
+    .invalid-buttons {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .reset-button {
+
+        font-size: 21px;
+
+    }
+
 }
